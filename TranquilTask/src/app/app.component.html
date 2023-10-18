@@ -1,16 +1,8 @@
 <div>
-  <h1 style="color: green; 
-      font-style: italic;"> 
-    GEEKS FOR GEEKS 
-  </h1> 
-  <h3> 
-    Build a Simple Web App with Express & Angular 
-  </h3> 
-  <h5> 
-    The below message is fetched from the express backend 
-  </h5> 
-  <p *ngIf="message"> 
-    {{ message.message }} 
-  </p>
+  <h2>
+    TranquilTask Server-side communication test
+  </h2>
+  <input type="text" id="inText" name="inTextName" #inText/>
+  <button type="button" (click)="clicked(inText.value)">Send</button>
 </div>
 <router-outlet></router-outlet>

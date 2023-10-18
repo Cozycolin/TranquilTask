@@ -2,12 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service'; 
 
 @Component({ 
-	selector: 'app-root', 
+	selector: 'app', 
 	templateUrl: './app.component.html', 
 	styleUrls: ['./app.component.css'] 
 }) 
 export class AppComponent implements OnInit { 
-	title = 'frontEnd'; 
+	title = 'TranquilTask'; 
+
+  clicked(message:string) {
+    console.log("hello");
+  }
+
+
 	message: any; 
 	constructor(private apiService: ApiService) { }; 
 	ngOnInit() { 
