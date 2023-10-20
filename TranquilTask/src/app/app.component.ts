@@ -8,17 +8,20 @@ import { ApiService } from './api.service';
 }) 
 export class AppComponent implements OnInit { 
 	title = 'TranquilTask'; 
-
-  clicked(message:string) {
-    console.log("hello");
+  
+  clicked(message: string) {
+    this.apiService.sendtoServerConsole(message).subscribe(data => {
+      console.log(data);
+    });
   }
 
 
-	message: any; 
+	recievedMessage: any; 
 	constructor(private apiService: ApiService) { }; 
 	ngOnInit() { 
+    console.log('Started')
 		this.apiService.getMessage().subscribe(data => { 
-			this.message = data; 
+			this.recievedMessage = data; 
 		}); 
 	} 
 }

@@ -2,7 +2,11 @@
   <h2>
     TranquilTask Server-side communication test
   </h2>
-  <input type="text" id="inText" name="inTextName" #inText/>
-  <button type="button" (click)="clicked(inText.value)">Send</button>
+  <form>
+    <div>
+      <input type="text" id="inText" name="inTextName" #inText/>
+      <button type="button" (click)="clicked(inText.value)">Send</button>
+    </div>
+  </form>
 </div>
 <router-outlet></router-outlet>

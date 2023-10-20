@@ -10,4 +10,9 @@ export class ApiService {
 		return this.http.get( 
 			'http://localhost:3000/api/message'); 
 	} 
+    
+    sendtoServerConsole(message : string){
+        console.log(message);
+        return this.http.put('http://localhost:3000/api/console', {'message' : message});
+    }
 }
