@@ -27,7 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: TranquilTask/package-lock.json
-    - run: npm ci --legacy-bundling
+    - run: npm i 
     - run: npm install angular
     - run: npm run build --if-present
     - run: npm test
