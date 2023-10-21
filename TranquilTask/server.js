@@ -1,12 +1,14 @@
+const process =  require('node:process');
 const express = require('express'); 
 const app = express(); 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, Db } = require('mongodb');
 
-
+//port for server
 const port = 4000;
 
 
 // MongoDB client
+let MongoDbConnectionSucceded = false;
 const uri = "mongodb+srv://TranquilTask:TranquilWebAdmin@tranquiltaskcluster.voe6es9.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
 	serverApi: {
@@ -15,21 +17,28 @@ const client = new MongoClient(uri, {
 	  deprecationErrors: true,
 	}
   });
-
 //MongoDB test
 async function run() {
-	try {
-		// Connect the client to the server	(optional starting in v4.7)
-		await client.connect();
-		// Send a ping to confirm a successful connection
-		await client.db("admin").command({ ping: 1 });
-		console.log("Pinged your deployment. You successfully connected to MongoDB!");
-	} finally {
-		// Ensures that the client will close when you finish/error
-		await client.close();
-	}
+	// Connect the client to the server	(optional starting in v4.7)
+	await client.connect();
+	// Send a ping to confirm a successful connection
+	await client.db("admin").command({ ping: 1 });
+	console.log("Pinged your deployment. You successfully connected to MongoDB!");
+	MongoDbConnectionSucceded = true;
+
 }
-run().catch(console.dir);
+//if it does not succesfully connect then print an error
+run().catch((reason) => {
+	console.dir(reason);
+	console.log("MongoDb Connection failed");
+	MongoDbConnectionSucceded = false;
+});
+//if the database succesfully connected then establish variables
+if(MongoDbConnectionSucceded){
+	const database = client.db();
+}
+
+
 
 
 // handling CORS 
@@ -61,4 +70,10 @@ app.get('/api/console', (req,res) => {
 
 app.listen(port, () => { 
 	console.log('Server listening on port '+port.toString()); 
+});
+
+//close connections on exit
+process.on("exit", async () => {
+	//if mongo atlas is connected then disconnect it
+	await client.close();
 });
