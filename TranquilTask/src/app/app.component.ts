@@ -9,19 +9,17 @@ import { ApiService } from './api.service';
 export class AppComponent implements OnInit { 
 	title = 'TranquilTask'; 
   
-  clicked(message: string) {
-    this.apiService.sendtoServerConsole(message).subscribe(data => {
-      console.log(data);
-    });
+  async clicked(message: string) {
+    this.apiService.sendMessagetoServerConsole(message).subscribe(data => {
+		  console.log(data);
+	  });
   }
 
 
 	recievedMessage: any; 
 	constructor(private apiService: ApiService) { }; 
 	ngOnInit() { 
-    console.log('Started')
-		this.apiService.getMessage().subscribe(data => { 
-			this.recievedMessage = data; 
-		}); 
+    	console.log('Started')
+		
 	} 
 }
