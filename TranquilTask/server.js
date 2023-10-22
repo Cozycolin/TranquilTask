@@ -17,6 +17,8 @@ const client = new MongoClient(uri, {
 	  deprecationErrors: true,
 	}
   });
+
+let database;
 //MongoDB test
 async function run() {
 	// Connect the client to the server	(optional starting in v4.7)
@@ -25,7 +27,7 @@ async function run() {
 	await client.db("admin").command({ ping: 1 });
 	console.log("Pinged your deployment. You successfully connected to MongoDB!");
 	MongoDbConnectionSucceded = true;
-
+	database = await client.db();
 }
 //if it does not succesfully connect then print an error
 run().catch((reason) => {
@@ -33,10 +35,7 @@ run().catch((reason) => {
 	console.log("MongoDb Connection failed");
 	MongoDbConnectionSucceded = false;
 });
-//if the database succesfully connected then establish variables
-if(MongoDbConnectionSucceded){
-	const database = client.db();
-}
+
 
 
 
