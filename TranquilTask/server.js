@@ -12,13 +12,12 @@ let MongoDbConnectionSucceded = false;
 const uri = "mongodb+srv://TranquilTask:TranquilWebAdmin@tranquiltaskcluster.voe6es9.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
 	serverApi: {
-	  version: ServerApiVersion.v1,
-	  strict: true,
-	  deprecationErrors: true,
+		version: ServerApiVersion.v1,
+		strict: true,
+		deprecationErrors: true,
 	}
-  });
+});
 
-let database;
 //MongoDB test
 async function run() {
 	// Connect the client to the server	(optional starting in v4.7)
@@ -50,20 +49,21 @@ app.use(express.json())
 
 
 // route for handling requests from the Angular client 
-app.get('/api/message', (req, res) => { 
+app.get('/server/message', (req, res) => { 
 	console.log("message sent");
 	res.json({ message: 
 			'Message!' }); 
 }); 
 
-// route for handling console requests
-app.put('/api/console', (req, res) => {
-	console.log("Recieved");
-	console.log(req.body['message']);
+// route for handling server console messages
+app.put('/server/console', (req, res) => {
+	console.log("Recieved console message:");
+	console.log(req.body.Message);
+	res.send(req.body);
 	//res.sendStatus(200);
 });
 
-app.get('/api/console', (req,res) => {
+app.get('/server/console', (req,res) => {
 	res.send("/api/console Working");
 });
 

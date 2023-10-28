@@ -11,11 +11,11 @@ const URL = "http://localhost:4000"
 export class ApiService { 
 	constructor(private http: HttpClient) {} 
 	getMessage() { 
-		return this.http.get(URL+'/api/message'); 
+		return this.http.get(URL+'/server/message'); 
 	} 
     
     sendMessagetoServerConsole(message : string){
         console.log(message);
-        return this.http.put(URL+'/api/console', {'message' : message});
+        return this.http.put(URL+'/server/console', {"Message":message});
     }
 }
