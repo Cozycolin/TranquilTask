@@ -10,8 +10,8 @@ const URL = "http://localhost:4000"
 }) 
 export class ApiService { 
 	constructor(private http: HttpClient) {} 
-	getMessage() { 
-		return this.http.get(URL+'/server/message'); 
+	testConnection() { 
+		return this.http.get(URL+'/server/testConnection');
 	} 
     
     sendMessagetoServerConsole(message : string){

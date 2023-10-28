@@ -27,6 +27,7 @@ async function run() {
 	console.log("Pinged your deployment. You successfully connected to MongoDB!");
 	MongoDbConnectionSucceded = true;
 	database = await client.db();
+	
 }
 //if it does not succesfully connect then print an error
 run().catch((reason) => {
@@ -47,12 +48,11 @@ app.use(cors());
 //handle json
 app.use(express.json())
 
-
-// route for handling requests from the Angular client 
-app.get('/server/message', (req, res) => { 
-	console.log("message sent");
-	res.json({ message: 
-			'Message!' }); 
+// route for testing requests from the Angular client 
+app.get('/server/testConnection', (req, res) => { 
+	console.log("Connected to client");
+	res.status(200);
+	res.send({"message":"Connected"});
 }); 
 
 // route for handling server console messages
