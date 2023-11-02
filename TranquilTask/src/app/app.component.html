@@ -3,10 +3,12 @@
     TranquilTask Server-side communication test
   </h2>
   <form>
-    <div>
+    <form (submit)="clicked(inText.value)" title="Com test">
       <input type="text" id="inText" name="inTextName" #inText/>
-      <button type="button" (click)="clicked(inText.value)">Send</button>
-    </div>
+      <button type="button" (click)="clicked(inText.value)">Send</button> <!--(click)="clicked(inText.value)"-->
+    </form>
+    <h2> MongoDB request for a random document in profile info</h2>
+    <p id="MongoDBout" >{{MongoDbOuttext}}</p>
   </form>
 </div>
 <router-outlet></router-outlet>

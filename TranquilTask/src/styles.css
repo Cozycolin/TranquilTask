@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+/* Styling for home webpage */
+
+
+.titleDiv {
+    border: 5px outset black;
+    background-color: lightblue;
+    text-align: left;
+}

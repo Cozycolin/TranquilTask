@@ -17,7 +17,6 @@ const client = new MongoClient(uri, {
 		deprecationErrors: true,
 	}
 });
-
 //MongoDB test
 async function run() {
 	// Connect the client to the server	(optional starting in v4.7)
@@ -26,8 +25,6 @@ async function run() {
 	await client.db("admin").command({ ping: 1 });
 	console.log("Pinged your deployment. You successfully connected to MongoDB!");
 	MongoDbConnectionSucceded = true;
-	database = await client.db();
-	
 }
 //if it does not succesfully connect then print an error
 run().catch((reason) => {
@@ -35,7 +32,7 @@ run().catch((reason) => {
 	console.log("MongoDb Connection failed");
 	MongoDbConnectionSucceded = false;
 });
-
+let database = client.db('User_info');
 
 
 
@@ -62,10 +59,28 @@ app.put('/server/console', (req, res) => {
 	res.send(req.body);
 	//res.sendStatus(200);
 });
-
+// route for 
 app.get('/server/console', (req,res) => {
 	res.send("/api/console Working");
 });
+
+//create mongodb request handler
+let mongoRouter = express.Router();
+
+//middleware mongo db check to see if mongo db is connected 
+mongoRouter.all('/',(res,req,next) =>{
+	if(database != null){
+		next;
+	}else{
+		req.sendStatus(500);
+	}
+})
+mongoRouter.put('/runCommand', (req,res) => {
+	res.send(database.command(req.body));
+})
+
+//mount mongo router
+app.use('/mongoDb',mongoRouter);
 
 app.listen(port, () => { 
 	console.log('Server listening on port '+port.toString()); 
