@@ -3,14 +3,16 @@ import { BrowserModule }
 	from '@angular/platform-browser'; 
 import { AppRoutingModule } 
 	from './app-routing.module'; 
-import { AppComponent } from './app.component'; 
+import { AppComponent } from './Calendar app/app.component'; 
 import { HttpClientModule } 
 	from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker'; 
+import { NavAppComponent } from './app/nav-app/nav-app.component';
 
 @NgModule({ 
 	declarations: [ 
-		AppComponent 
+		AppComponent,
+		NavAppComponent
 	], 
 	imports: [ 
 		BrowserModule, 
@@ -23,6 +25,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 }) 
 	], 
 	providers: [], 
-	bootstrap: [AppComponent] 
+	bootstrap: [AppComponent, NavAppComponent] 
 })
 export class AppModule { }
