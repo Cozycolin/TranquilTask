@@ -3,7 +3,7 @@ import { ApiService } from '../server.api';
 import { MongoService } from '../mongo.api';
 
 @Component({ 
-	selector: 'app', 
+	selector: 'Calendar-app', 
 	templateUrl: './app.component.html', 
 	styleUrls: ['./app.component.css'] 
 }) 
