@@ -25,6 +25,8 @@ async function run() {
 	await client.db("admin").command({ ping: 1 });
 	console.log("Pinged your deployment. You successfully connected to MongoDB!");
 	MongoDbConnectionSucceded = true;
+
+	database.collection("Profile_info").findOne({Username:"Test"}).then((doc) => {console.dir(doc);});
 }
 //if it does not succesfully connect then print an error
 run().catch((reason) => {
@@ -75,8 +77,8 @@ mongoRouter.all('/',(res,req,next) =>{
 		req.sendStatus(500);
 	}
 })
-mongoRouter.put('/runCommand', (req,res) => {
-	res.send(database.command(req.body));
+mongoRouter.get('/GetProfile', (req,res) => {
+	//res.send(database.command({find:"Test"}));
 })
 
 //mount mongo router
